@@ -1,21 +1,25 @@
-class Personagem{
 
- protected abstract emoji : 
+ abstract class Personagem {
+
+    protected abstract emoji : string
+    private vestimenta: Vestimenta
+
+ 
 
     public nome: string
-    protected acessorios : Acessorio[] = []
+    //protected acessorios : Acessorio[] = []
     private altura: number
     private elementos: string
     private velocidade: number
-    public cor: string
+    private ataque: number
+    private cor: string
     private nivel: number
     private evolucao: boolean
     private alcance: string
     private forca: number
     private moeda: number
     private vida: number
-    private morte: boolean
-    private vestimenta:string
+    private atacando: boolean
 
     constructor(
             nome: string,
@@ -29,53 +33,57 @@ class Personagem{
             alcance: string,
             forca: number,
             moeda: number,
+            vestimenta:Vestimenta,
             vida: number,
-            morte: boolean
+            atacando: boolean
     )
     {
         this.nome = nome
+       // this.acessorios
         this.altura = altura
         this.elementos = elementos
         this.velocidade = velocidade
         this.ataque = ataque
         this.cor = cor
         this.nivel = 1
-        this. evolucao = evolucao
+        this.evolucao = evolucao
         this.alcance = alcance
         this.forca = forca
-        this. moeda = moeda
+        this.moeda = moeda
+        this.vestimenta = vestimenta
         this.vida = vida
-        this.morte = morte
-
-
-
+        this.atacando = atacando
     }
 
     public equipar(vestimenta: Vestimenta):void{
         this.vestimenta = vestimenta
     }
+   public getAltura(): number{
+     return this.altura
+   }
 
-    public getAcessorios():void{
+    /*public getAcessorios():void{
 
-        let contador = 0
+       let contador = 0
         for(let item of  this.acessorios){
             console.log("Quais acessorios",item)
             contador ++
         }
-        console.log("Quantidade de Acessório:",contador)
+       console.log("Quantidade de AcessÃ³rio:",contador)
     }
 
     public setAcessorios(acessorios : Acessorio):void{
         this.acessorios.push(acessorios)
     }
 
-    public removeAcessorios(): Acessorio | null{
+    //public removeAcessorios(): Acessorio | null{
         let acessorio  =  this.acessorios.pop()
         if(acessorio) return acessorio
         return null
-    }
+    }*/
 
-     //métodos acessores + - #
+     //metodos acessores + - #
+
      public getNivel(): number{
         return this.nivel
     }
@@ -87,15 +95,15 @@ class Personagem{
     public getEvolucao(): boolean{
         return this.evolucao
     }
-
+    
     public setAlcance(alcance:string): void{
         this.alcance = alcance
     }
 
 
-     atacar(persona: Personagem) : void{
+     atacar(personagem: Personagem) : void{
         personagem.perderVida(this.forca)
-        console.log(`${this.emoji} ${this.nome} está atacando... ${this.forca}`)
+        console.log(`${this.emoji} ${this.nome} estÃ¡ atacando... ${this.forca}`)
         this.moeda += personagem.dano()
      }
 
@@ -104,8 +112,8 @@ class Personagem{
 
      }
 
-    private dano():number{
-        if(this.vida >){
+    private dano (): number{
+        if(this.vida > 0){
             console.log(`${this.emoji} ${this.nome} agora tem ${this.vida} de vida...`)
             return 0
         } else{
@@ -114,19 +122,16 @@ class Personagem{
         }
    }
 
-   private vitoria() {
-    if(this.atacando += true){
-        console.log(this.nome,"Vitória")
-    }
-    else{
-        console.log(this.nome,"Derrota")
+   vitoria() {
+    if(this.atacando){
+        console.log(this.nome,"VitÃ³ria")
     }
   }
 
 
-    abstract correr():void
+    abstract correr() :void
 
-    abstract getEmoji():void
+    abstract getEmoji(): void
 
     abstract morte(): void
 
@@ -139,11 +144,27 @@ class Personagem{
     voar(){
         console.log("voando!!!")
     }
+ }
+   class Calcular{
 
+    static geraValor(valor:number): number{
+
+        let numero: number = Math.floor(Math.random() * valor)
+           return numero
+    }
+   }
    
-}
-class Calcular{
+   class Vestimenta{
 
-    public static get.
-}
-  
+     armadura: string
+
+     constructor(
+
+        armadura:string
+     ){
+        
+        this.armadura = armadura
+     }
+
+    
+   }
